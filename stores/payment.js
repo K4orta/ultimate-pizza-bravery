@@ -1,8 +1,17 @@
 class PaymentStore {
-  this.billingInfo = {
-    zipcode
-  }
-  this.creditCard = {
-
+  constructor() {
+    this.billingInfo = {
+      zipcode: '',
+      phone: '',
+      firstname: '',
+      lastname: '',
+      email: '',
+    }
+    
+    this.creditCard = {
+      number: '',
+      exp: '',
+      ccv: '',
+    }
   }
 }
