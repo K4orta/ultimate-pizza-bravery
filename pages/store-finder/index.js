@@ -12,9 +12,7 @@ class StoreFinder extends React.Component {
     }
   }
   render() {
-
     const { zipcode, stores } = this.props.query
-    console.log(this.props.stores)
     let form
     if (!zipcode) {
       form = <ZipForm />
