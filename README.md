@@ -13,3 +13,7 @@ Things needed for an order
 1. Store
 2. Address
 3. Config
+
+Order things are needed in
+
+Your store
