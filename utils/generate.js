@@ -3,10 +3,6 @@ import sizes from '../data/sizes'
 import toppingData from '../data/toppings'
 import { Pizza } from '../stores/pizza'
 
-const toppings = toppingData
-  .filter(x => !x.tags['Sauce'] && !x.tags['Cheese'])
-  .map(x => x.code)
-
 function randFromArray(arr, filter) {
   let filtered = arr
   if (filter !== undefined) {
@@ -15,11 +11,19 @@ function randFromArray(arr, filter) {
   return filtered[Math.floor(Math.random() * filtered.length)]
 }
 
+const toppings = toppingData
+  .filter(top => !top.tags['Sauce'] && !top.tags['Cheese'])
+  .map(top => top.code)
+
+const sauces = toppingData
+  .filter(top => top.tags['Sauce'])
+  .map(sauce => sauce.code)
 const defaultOptions = {
   size: undefined,
   maxToppings: 3,
   crusts: ["10SCREEN", "12SCREEN", "12THIN", "PBKIREZA", "14SCREEN", "14THIN", "P16IBKZA", "P10IGFZA", "P12IPAZA"],
-  toppings: [],
+  sauces,
+  toppings,
 }
 
 export default function generatePizza(spec = {}) {
@@ -34,11 +38,14 @@ export default function generatePizza(spec = {}) {
   })
 
   // Add sauce
-
-
+  p.addTopping({
+    code: randFromArray(opts.sauces)
+  })
+  
+  // Add optional toppings
   for (let i = 0; i < opts.maxToppings; i += 1) {
     p.addTopping({
-      code: randFromArray(toppings)
+      code: randFromArray(opts.toppings)
     })
   }
 
