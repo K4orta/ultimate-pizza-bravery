@@ -16,6 +16,22 @@ function sideCode(left, right) {
   return enc
 }
 
+function defaultSides(left, right) {
+  if (left === right) {
+    return { left: 1, right: 1 }
+  }
+
+  const enc = {}
+  if (left) {
+    enc['left'] = left
+  }
+
+  if (right) {
+    enc['right'] = right
+  }
+  return enc
+}
+
 export class Pizza {
   constructor(spec) {
     extendObservable(this, {
@@ -28,11 +44,18 @@ export class Pizza {
     this.crust = crust
   }
 
-  addTopping({ code, left, right}) {
-    const encodedSide = sideCode(left, right)
-    this.toppings.push({
-      code: code,
-      side: encodedSide,
-    })
+  addTopping(topping) {
+    this.toppings.push(Object.assign({}, topping, defaultSides(topping.left, topping.right)))
   }
+}
+
+let store
+export function initPizza(spec = {}) {
+  if (typeof window === 'undefined') {
+    return new Pizza(spec)
+  }
+  if (!store) {
+    store = new Pizza(spec)
+  }
+  return store
 }
