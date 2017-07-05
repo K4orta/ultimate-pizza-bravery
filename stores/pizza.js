@@ -17,7 +17,7 @@ function sideCode(left, right) {
 }
 
 function defaultSides(left, right) {
-  if (left === right) {
+  if (left === right && left === undefined) {
     return { left: 1, right: 1 }
   }
 
@@ -33,19 +33,22 @@ function defaultSides(left, right) {
 }
 
 export class Pizza {
-  constructor(spec) {
+  constructor(spec = {}) {
     extendObservable(this, {
-      crust: undefined,
-      toppings: []
+      crust: spec.crust || undefined,
+      toppings: spec.toppings || [],
+      setCrust: action((crust) => {
+        this.crust = crust
+      }),
+      addTopping: action((topping) => {
+        this.toppings.push(Object.assign({}, topping, defaultSides(topping.left, topping.right)))
+
+      }),
+      reset: action(() => {
+        this.toppings = []
+        this.crust = undefined
+      })
     })
-  }
-
-  setCrust(crust) {
-    this.crust = crust
-  }
-
-  addTopping(topping) {
-    this.toppings.push(Object.assign({}, topping, defaultSides(topping.left, topping.right)))
   }
 }
 

@@ -64,3 +64,18 @@ test('Can add different amounts of toppings', t => {
     right: 1.5
   })
 })
+
+test('Can init with a spec object', t => {
+  const p = new Pizza({
+    crust: {
+      code: '12SCREEN'
+    },
+    toppings: [
+      { code: 'X' },
+      { code: 'Y' }
+    ]
+  })
+  t.true(p.crust.code === '12SCREEN')
+  t.true(p.toppings[0].code === 'X')
+  t.true(p.toppings[1].code === 'Y')
+})
