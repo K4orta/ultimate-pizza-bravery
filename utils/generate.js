@@ -29,7 +29,7 @@ const defaultOptions = {
   overrides: []
 }
 
-const amounts = [0, 0.5, 1, 1.5, 2]
+const amounts = [0, 0.5, 1, 1, 1.5, 2]
 const toppingSides = [
   {left: 1, right: 0},
   {left: 0, right: 1},

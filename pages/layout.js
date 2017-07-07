@@ -5,12 +5,13 @@ const Layout = ({title, children}) => (
   <div>
     <Head>
       <title>Real Ultimate Bravery - {title}</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
     </Head>
     {children}
     <style global jsx>{`
       body {
         background: #FF851B;
-        color: #444;  
+        color: #444;
       }
 
       a {

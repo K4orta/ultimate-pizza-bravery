@@ -5,12 +5,15 @@ import Layout from '../layout'
 import generate from '../../utils/generate'
 import { initPizza } from '../../stores/pizza'
 import Pizza from './pizza'
+import VisualizePizza from '../../components/pizza/visualize'
+import Shake from 'shake.js'
 
 class OptionsView extends React.Component {
   constructor(props) {
     super(props)
     this.pizza = initPizza(props.pizza)
     this.onGen = this.onGen.bind(this)
+    this.didShake = this.didShake.bind(this)
   }
   static async getInitialProps() {
     return {
@@ -19,6 +22,21 @@ class OptionsView extends React.Component {
   }
   onGen() {
     this.pizza = generate({}, this.pizza)
+  }
+  didShake() {
+    this.pizza = generate({}, this.pizza)
+  }
+  componentDidMount() {
+    this.shake = new Shake({
+      threshold: 15,
+      timeout: 1000
+    })
+    this.shake.start()
+    window.addEventListener('shake', this.didShake)
+  }
+  componentWillUnmount() {
+    this.shake.stop()
+    window.removeEventListener('shake', this.didShake) 
   }
   render() {
       const { pizza } = this.props
@@ -30,6 +48,7 @@ class OptionsView extends React.Component {
         <Layout title="Options">
           <h1>Options</h1>
           <button onClick={this.onGen}>Generate</button>
+          <VisualizePizza />
           <Pizza/>
         </Layout>
       </Provider>
