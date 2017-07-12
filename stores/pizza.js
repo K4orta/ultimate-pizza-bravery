@@ -1,4 +1,5 @@
 import { extendObservable, action } from 'mobx'
+import { PropTypes } from 'mobx-react'
 
 function sideCode(left, right) {
   if (left === right) {
@@ -42,7 +43,6 @@ export class Pizza {
       }),
       addTopping: action((topping) => {
         this.toppings.push(Object.assign({}, topping, defaultSides(topping.left, topping.right)))
-
       }),
       reset: action(() => {
         this.toppings = []
@@ -50,6 +50,11 @@ export class Pizza {
       })
     })
   }
+}
+
+Pizza.propTypes = {
+  crust: PropTypes.ObservableObject,
+  toppings: PropTypes.ObservableArray,
 }
 
 let store

@@ -14,7 +14,7 @@ test('Can set genderated Pizza size', t => {
 
 test('Generated Pizza comes with cheese', t => {
   const p = generate()
-  t.true(p.toppings[0].code === 'C')
+  t.true(p.toppings[1].code === 'C')
 })
 
 test('By default, generates a pizza with 3 toppings', t => {

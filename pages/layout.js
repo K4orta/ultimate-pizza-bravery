@@ -9,9 +9,15 @@ const Layout = ({title, children}) => (
     </Head>
     {children}
     <style global jsx>{`
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         background: #FF851B;
         color: #444;
+        text-align: center;
+        font-family: Arial, san-serif;
       }
 
       a {

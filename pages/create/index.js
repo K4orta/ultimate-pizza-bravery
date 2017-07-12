@@ -7,6 +7,7 @@ import { initPizza } from '../../stores/pizza'
 import Pizza from './pizza'
 import VisualizePizza from '../../components/pizza/visualize'
 import Shake from 'shake.js'
+import Link from 'next/link'
 
 class OptionsView extends React.Component {
   constructor(props) {
@@ -21,15 +22,15 @@ class OptionsView extends React.Component {
     }
   }
   onGen() {
-    this.pizza = generate({}, this.pizza)
+    generate({}, this.pizza)
   }
   didShake() {
-    this.pizza = generate({}, this.pizza)
+    this.onGen()
   }
   componentDidMount() {
     this.shake = new Shake({
-      threshold: 15,
-      timeout: 1000
+      threshold: 5,
+      timeout: 200
     })
     this.shake.start()
     window.addEventListener('shake', this.didShake)
@@ -39,17 +40,22 @@ class OptionsView extends React.Component {
     window.removeEventListener('shake', this.didShake) 
   }
   render() {
-      const { pizza } = this.props
-      const toppings = pizza.toppings.map(x => (
-        <div key={x.code}>{x.name}</div>
-      ))
     return (
       <Provider pizza={this.pizza}>
         <Layout title="Options">
-          <h1>Options</h1>
           <button onClick={this.onGen}>Generate</button>
+          <style jsx>{`
+            button {
+              background: #444;
+              border: 0;
+              border-radius: .25rem;
+              color: white;
+              padding: .5rem 1rem;
+            }
+          `}</style>
           <VisualizePizza />
           <Pizza/>
+          <button><Link href="info"><a>Order it</a></Link></button>
         </Layout>
       </Provider>
     )

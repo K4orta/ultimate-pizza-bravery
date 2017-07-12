@@ -44,13 +44,6 @@ export default function generatePizza(spec = {}, pizza) {
   p.setCrust(code)
   
   p.toppings = []
-  // Add the cheese
-  p.addTopping({
-    code: 'C',
-    name: 'Cheese',
-    left: randFromArray(amounts)[0],
-    right: randFromArray(amounts)[0]
-  })
 
   // Add sauce
   const [ sauce ] = randFromArray(opts.sauces)
@@ -59,6 +52,15 @@ export default function generatePizza(spec = {}, pizza) {
     left: sauceAmount,
     right: sauceAmount
   }))
+
+  // Add the cheese
+  p.addTopping({
+    code: 'C',
+    name: 'Cheese',
+    tags: { Cheese: true },
+    left: randFromArray(amounts)[0],
+    right: randFromArray(amounts)[0]
+  })
   
   // Add optional toppings
   let toppingsOpts = opts.toppings.slice()
