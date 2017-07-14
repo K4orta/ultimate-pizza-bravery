@@ -13,4 +13,5 @@ module.exports = {
     }
     return c
   },
+  assetPrefix: '/ultimate-pizza-bravery'
 }
