@@ -4,7 +4,7 @@ import { observer, Provider } from 'mobx-react'
 import Layout from '../layout'
 import generate from '../../utils/generate'
 import { initPizza } from '../../stores/pizza'
-import Pizza from './pizza'
+import Describe from '../../components/pizza/describe'
 import VisualizePizza from '../../components/pizza/visualize'
 import Shake from 'shake.js'
 import Link from 'next/link'
@@ -43,7 +43,6 @@ class OptionsView extends React.Component {
     return (
       <Provider pizza={this.pizza}>
         <Layout title="Options">
-          <button onClick={this.onGen}>Generate</button>
           <style jsx>{`
             button {
               background: #444;
@@ -53,8 +52,8 @@ class OptionsView extends React.Component {
               padding: .5rem 1rem;
             }
           `}</style>
-          <VisualizePizza />
-          <Pizza/>
+          <VisualizePizza onClick={this.onGen} />
+          <Describe />
           <button><Link href="info"><a>Order it</a></Link></button>
         </Layout>
       </Provider>

@@ -28,7 +28,7 @@ function sauceAmount(t) {
   return ''
 }
 
-const VisualizePizza = ({ pizza }) => {
+const VisualizePizza = ({ pizza, onClick }) => {
   const sauce = pizza.toppings.find(t => t.tags.Sauce)
   const toppings = pizza.toppings
     .filter(t => t.tags && !t.tags.Sauce)
@@ -49,7 +49,7 @@ const VisualizePizza = ({ pizza }) => {
   }
   return (
     <div className="PizzaVis">
-      <div className="Pizza__container">
+      <div className="Pizza__container" onClick={onClick}>
         <div className={`Crust Crust--${pizza.crust.sizeCode} Crust--${pizza.crust.flavorCode}`} >
           {sauceEl}
         </div>
@@ -60,11 +60,16 @@ const VisualizePizza = ({ pizza }) => {
       <style jsx>{`
           .PizzaVis {
             perspective: 500px;
-            position: relative
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 12.5rem;
+            margin-bottom: 2rem;
           }
 
           .Pizza__container {
-            transform: rotateX(70deg);
+            transform: rotateX(70deg) rotateZ(-5deg);
           }
         `}</style>
         <style jsx>{crustStyles}</style>

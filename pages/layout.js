@@ -14,10 +14,11 @@ const Layout = ({title, children}) => (
       }
 
       body {
-        background: #FF851B;
-        color: #444;
+        background: #F15A24;
+        color: #fff;
         text-align: center;
         font-family: Arial, san-serif;
+        padding: 0;
       }
 
       a {
