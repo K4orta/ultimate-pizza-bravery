@@ -57,7 +57,7 @@ export default `
   }
 
   .Topping--C::before {
-    background: #ffd;
+    background: #ffdd4f;
     box-shadow: inset 0 0 4rem #fd8;
   }
 `

@@ -1,6 +1,5 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { toJS } from 'mobx'
 import crustStyles from './crusts.styled.js'
 import sauceStyles from './sauces.styled.js'
 import toppingStyles from './toppings.styled.js'
@@ -69,7 +68,7 @@ const VisualizePizza = ({ pizza, onClick }) => {
           }
 
           .Pizza__container {
-            transform: rotateX(70deg) rotateZ(-5deg);
+            transform: rotateX(70deg);
           }
         `}</style>
         <style jsx>{crustStyles}</style>

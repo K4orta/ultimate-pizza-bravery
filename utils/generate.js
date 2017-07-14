@@ -6,7 +6,7 @@ import { Pizza } from '../stores/pizza'
 function camelCaseKeys(x) {
   const out = {}
   Object.keys(x).forEach(k => {
-    out[k.toLowerCase()] = x[k]
+    out[`${k.charAt(0).toLowerCase()}${k.slice(1)}`] = x[k]
   })
   return out 
 }
