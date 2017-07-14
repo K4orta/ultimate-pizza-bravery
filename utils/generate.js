@@ -1,7 +1,15 @@
 import crustData from '../data/crusts'
 import toppingData from '../data/toppings'
-import camelCaseKeys from 'camelcase-keys'
+// import camelCaseKeys from 'camelcase-keys'
 import { Pizza } from '../stores/pizza'
+
+function camelCaseKeys(x) {
+  const out = {}
+  Object.keys(x).forEach(k => {
+    out[k.toLowerCase()] = x[k]
+  })
+  return out 
+}
 
 function randFromArray(arr, filter) {
   let filtered = arr

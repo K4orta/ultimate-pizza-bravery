@@ -55,7 +55,7 @@ class Describe extends React.Component {
   render() {
     const { pizza } = this.props
     const toppings = pizza.toppings.filter(t => !t.tags.Sauce).map(t => (
-      <Item>
+      <Item key={t.code}>
         {toppingSide(t)}
       </Item>
     ))

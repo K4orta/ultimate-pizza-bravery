@@ -1,5 +1,4 @@
 import React from 'react'
-import { toJS } from 'mobx'
 import { observer, Provider } from 'mobx-react'
 import Layout from '../layout'
 import generate from '../../utils/generate'
