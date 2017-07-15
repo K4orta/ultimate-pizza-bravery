@@ -79,3 +79,20 @@ test('Can init with a spec object', t => {
   t.true(p.toppings[0].code === 'X')
   t.true(p.toppings[1].code === 'Y')
 })
+
+test('Can get toppings without sauce or cheese', t => {
+  const p = new Pizza()
+  p.addTopping({code: 'C', tags: {Cheese: true}})
+  p.addTopping({code: 'X', tags: {Sauce: true}})
+  p.addTopping({code: 'P', tags: {}})
+  t.true(p.toppingsOnly.length === 1)
+})
+
+test('Can remove a topping', t => {
+  const p = new Pizza()
+  p.addTopping({code: 'C', tags: {Cheese: true}})
+  p.addTopping({code: 'X', tags: {Sauce: true}})
+  p.addTopping({code: 'P', tags: {}})
+  p.popTopping()
+  t.true(p.toppingsOnly.length === 0)
+})

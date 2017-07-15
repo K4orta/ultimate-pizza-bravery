@@ -44,10 +44,14 @@ export class Pizza {
       addTopping: action((topping) => {
         this.toppings.push(Object.assign({}, topping, defaultSides(topping.left, topping.right)))
       }),
+      popTopping: action(() => this.toppings.pop()),
       reset: action(() => {
         this.toppings = []
         this.crust = undefined
-      })
+      }),
+      get toppingsOnly () {
+        return this.toppings.filter(t => !t.tags.Cheese && !t.tags.Sauce)
+      }
     })
   }
 }

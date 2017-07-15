@@ -77,6 +77,7 @@ class Describe extends React.Component {
           .Describe {
             margin-bottom: 2rem;
             padding: 0 1rem;
+            text-align: left;
           }
         `}</style>
       </div>

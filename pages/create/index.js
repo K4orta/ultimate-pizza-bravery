@@ -3,8 +3,10 @@ import { observer, Provider } from 'mobx-react'
 import Layout from '../layout'
 import generate from '../../utils/generate'
 import { initPizza } from '../../stores/pizza'
+import { initOptions } from '../../stores/options'
 import Describe from '../../components/pizza/describe'
 import VisualizePizza from '../../components/pizza/visualize'
+import AmountSlider from '../../components/controls/amount-slider'
 import Shake from 'shake.js'
 import Link from 'next/link'
 
@@ -12,16 +14,29 @@ class OptionsView extends React.Component {
   constructor(props) {
     super(props)
     this.pizza = initPizza(props.pizza)
+    this.options = initOptions(props.options)
     this.onGen = this.onGen.bind(this)
     this.didShake = this.didShake.bind(this)
+    this.changeAmount = this.changeAmount.bind(this)
   }
   static async getInitialProps() {
     return {
+      options: initOptions(),
       pizza: generate({}, initPizza())
     }
   }
+  changeAmount(e) {
+    this.options.setMaxToppings(e.target.value)
+    if (this.pizza.toppingsOnly.length > e.target.value) {
+      this.pizza.popTopping()
+    }
+
+    if (this.pizza.toppingsOnly.length > e.target.value) {
+      
+    }
+  }
   onGen() {
-    generate({}, this.pizza)
+    generate({maxToppings: this.options.maxToppings}, this.pizza)
   }
   didShake() {
     this.onGen()
@@ -40,18 +55,30 @@ class OptionsView extends React.Component {
   }
   render() {
     return (
-      <Provider pizza={this.pizza}>
+      <Provider pizza={this.pizza} options={this.options}>
         <Layout title="Options">
           <style jsx>{`
             button {
-              background: #444;
-              border: 0;
+              background: transparent;
+              border: 2px solid #000;
               border-radius: .25rem;
-              color: white;
               padding: .5rem 1rem;
+            }
+
+            a {
+              color: black;
+              font-size: 16px;
+              font-weight: bold;
+              text-decoration: none;
             }
           `}</style>
           <VisualizePizza onClick={this.onGen} />
+          <AmountSlider
+            value={this.options.maxToppings}
+            onChange={this.changeAmount}
+          >
+              Toppings:
+          </AmountSlider>
           <Describe />
           <button><Link href="info"><a>Order it</a></Link></button>
         </Layout>
@@ -60,4 +87,4 @@ class OptionsView extends React.Component {
   }
 }
 
-export default OptionsView
+export default observer(OptionsView)

@@ -8,7 +8,7 @@ import Layout from './layout'
 
 class Intro extends React.Component {
   didShake() {
-    Router.push('/create')
+    Router.push('create')
   }
   componentDidMount() {
     this.shake = new Shake({

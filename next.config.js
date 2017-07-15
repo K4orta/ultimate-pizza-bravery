@@ -1,3 +1,5 @@
+const isProd = process.env.NODE_ENV === 'production'
+
 module.exports = {
   exportPathMap: function () {
     return {
@@ -13,5 +15,5 @@ module.exports = {
     }
     return c
   },
-  assetPrefix: '/ultimate-pizza-bravery'
+  assetPrefix: isProd ? '/ultimate-pizza-bravery' : ''
 }

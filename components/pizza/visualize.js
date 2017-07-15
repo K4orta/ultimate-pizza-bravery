@@ -64,7 +64,7 @@ const VisualizePizza = ({ pizza, onClick }) => {
             align-items: center;
             justify-content: center;
             height: 12.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
           }
 
           .Pizza__container {

@@ -29,6 +29,8 @@ test('Adds sauce by default', t => {
   t.true(sauce.code === 'FAKE')
 })
 
-// test('', t => {
-
-// })
+test('Can control the max number of toppings', t => {
+  const p = generate({ maxToppings: 1, toppings: [{code: 'ABC'}, {code: 'ABC2'}]})
+  const toppings = p.toppings.filter(x => x.code.indexOf('ABC') !== -1)
+  t.true(toppings.length === 1)
+})
