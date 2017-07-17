@@ -44,9 +44,15 @@ class DeliveryInfo extends React.Component {
             <label htmlFor="city">City</label>
             <input id="city" type="text" />
           </div>
-          <div className="AddressField">
-            <label htmlFor="zipcode">Zipcode</label>
-            <input id="zipcode" type="text" />
+          <div className="AddressRow">
+            <div className="AddressField">
+              <label htmlFor="state">State</label>
+              <input id="state" type="text" />
+            </div>
+            <div className="AddressField">
+              <label htmlFor="zipcode">Zipcode</label>
+              <input id="zipcode" type="text" />
+            </div>
           </div>
         </form>
         <style jsx>{`
@@ -56,19 +62,22 @@ class DeliveryInfo extends React.Component {
           }
 
           .AddressField {
-            display: flex;
-            margin: .5rem 0;
+            margin: .75rem 0;
+          }
+
+          .AddressRow .AddressField:first-child {
+            margin-right: 1rem;
           }
 
           .AddressField label {
-            flex: 1;
-            text-align: right; 
+            text-align: left;
             margin-right: 1rem;
-            max-width: 25%;
+            margin-bottom: .25rem;
+            display: block;
           }
 
-          .AddressField input {
-            flex: 1;
+          .AddressRow{
+            display: flex;
           }
         `}</style>
       </div>

@@ -24,16 +24,38 @@ class Intro extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="IntroContainer">
         <Head>
           <title>Ultimate Pizza Bravery</title>
         </Head>
         <Layout title="Ultimate Pizza Bravery">
-          <h1>Ultimate Pizza Bravery</h1>
-          <Link prefetch href="/create">
-            <p>Shake your device to get started</p>
+          <h1>Ultimate <span className="PizzaTitle">Pizza</span> Bravery</h1>
+          <Link prefetch href="create">
+            <a>
+              <p>Shake your device to get started (or click here)</p>
+            </a>
           </Link>
         </Layout>
+        <style jsx>{`
+            .IntroContainer {
+              height: 100vh;
+              display: flex;
+              flex-direction: col;
+              align-items: center;
+            }
+
+            h1 {
+              font-size: 3rem;
+              line-height: 1;
+              text-shadow: 0 4px 1px rgba(0,0,0,.25);
+              text-stroke: 2px #F15A24;
+              margin-top: 0;
+            }
+
+            .PizzaTitle {
+              color: #fff;
+            }
+          `}</style>
       </div>
     )
   }

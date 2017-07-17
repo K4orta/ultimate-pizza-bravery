@@ -58,19 +58,7 @@ class OptionsView extends React.Component {
       <Provider pizza={this.pizza} options={this.options}>
         <Layout title="Options">
           <style jsx>{`
-            button {
-              background: transparent;
-              border: 2px solid #000;
-              border-radius: .25rem;
-              padding: .5rem 1rem;
-            }
-
-            a {
-              color: black;
-              font-size: 16px;
-              font-weight: bold;
-              text-decoration: none;
-            }
+            
           `}</style>
           <VisualizePizza onClick={this.onGen} />
           <AmountSlider
