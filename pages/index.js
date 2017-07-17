@@ -42,6 +42,7 @@ class Intro extends React.Component {
               display: flex;
               flex-direction: col;
               align-items: center;
+              justify-content: center;
             }
 
             h1 {

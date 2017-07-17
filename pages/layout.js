@@ -60,6 +60,8 @@ const Layout = ({title, children}) => (
 
       .PageContainer {
         padding: 1rem;
+        margin: 0 auto;
+        max-width: 35rem;
       }
     `}</style>
     <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" />
