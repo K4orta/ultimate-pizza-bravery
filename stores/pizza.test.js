@@ -23,7 +23,8 @@ test('Can add a topping', t => {
   t.deepEqual(firstTopping, {
     code: 'C',
     left: 1,
-    right: 1
+    right: 1,
+    tags: {}
   })
 })
 
@@ -36,7 +37,8 @@ test('Can add topping to only one side', t => {
   const leftTopping = p.toppings[0]
   t.deepEqual(leftTopping, {
     code: 'P',
-    left: 1
+    left: 1,
+    tags: {}
   })
 
   p.addTopping({
@@ -47,6 +49,7 @@ test('Can add topping to only one side', t => {
   t.deepEqual(rightTopping, {
     code: 'Z',
     right: 1,
+    tags: {}
   })
 })
 
@@ -61,7 +64,8 @@ test('Can add different amounts of toppings', t => {
   t.deepEqual(topping, {
     code: 'Z',
     left: 0,
-    right: 1.5
+    right: 1.5,
+    tags: {}
   })
 })
 

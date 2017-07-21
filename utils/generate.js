@@ -45,6 +45,22 @@ const toppingSides = [
   {left: 1, right: 1}
 ]
 
+export function genTopping(spec) {
+  const opts = Object.assign({}, defaultOptions, spec)
+  let toppingsOpts = opts.toppings.slice()
+  const usedToppings = {}
+  if (opts.blacklist) {
+    opts.blacklist.forEach(x => usedToppings[x.code] = true)
+  }
+  toppingsOpts = toppingsOpts.filter(x => !usedToppings[x.code])
+  const [topping] = randFromArray(toppingsOpts)
+  return Object.assign(
+    {},
+    topping,
+    randFromArray(toppingSides)[0]
+  )
+}
+
 export default function generatePizza(spec = {}, pizza) {
   const opts = Object.assign({}, defaultOptions, spec)
   const [ code ] = randFromArray(opts.crusts, opts.size)

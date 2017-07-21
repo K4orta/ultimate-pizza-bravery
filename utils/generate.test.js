@@ -1,5 +1,5 @@
 import test from 'ava'
-import generate from './generate'
+import generate, { genTopping } from './generate'
 import { toJS } from 'mobx'
 
 test('Genderated Pizza has a crust', t => {
@@ -33,4 +33,21 @@ test('Can control the max number of toppings', t => {
   const p = generate({ maxToppings: 1, toppings: [{code: 'ABC'}, {code: 'ABC2'}]})
   const toppings = p.toppings.filter(x => x.code.indexOf('ABC') !== -1)
   t.true(toppings.length === 1)
+})
+
+test('Can add a single, random topping', t => {
+  const p = generate({ maxToppings: 0 })
+  p.addTopping(genTopping())
+  const toppings = p.toppingsOnly
+  t.true(toppings.length === 1)
+})
+
+test('Will blacklist any used topping', t => {
+  const toppingList = [{code: 'A'}, {code: 'B'}, {code: 'K'}]
+  const p = generate({ maxToppings: 1, toppings: [] })
+  p.addTopping({code: 'A'})
+  p.addTopping({code: 'B'})
+  p.addTopping(genTopping({toppings: toppingList, blacklist: p.toppings}))
+  const k = p.toppingsOnly.find(x => x.code === 'K')
+  t.true(k !== undefined)
 })

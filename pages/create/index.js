@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer, Provider } from 'mobx-react'
 import Layout from '../layout'
-import generate from '../../utils/generate'
+import generate, { genTopping } from '../../utils/generate'
 import { initPizza } from '../../stores/pizza'
 import { initOptions } from '../../stores/options'
 import Describe from '../../components/pizza/describe'
@@ -31,8 +31,8 @@ class OptionsView extends React.Component {
       this.pizza.popTopping()
     }
 
-    if (this.pizza.toppingsOnly.length > e.target.value) {
-      
+    if (this.pizza.toppingsOnly.length < e.target.value) {
+      this.pizza.addTopping(genTopping({blacklist: this.pizza.onlyToppings}))
     }
   }
   onGen() {
@@ -57,9 +57,6 @@ class OptionsView extends React.Component {
     return (
       <Provider pizza={this.pizza} options={this.options}>
         <Layout title="Options">
-          <style jsx>{`
-            
-          `}</style>
           <VisualizePizza onClick={this.onGen} />
           <AmountSlider
             value={this.options.maxToppings}

@@ -42,7 +42,7 @@ export class Pizza {
         this.crust = crust
       }),
       addTopping: action((topping) => {
-        this.toppings.push(Object.assign({}, topping, defaultSides(topping.left, topping.right)))
+        this.toppings.push(Object.assign({tags: {}}, topping, defaultSides(topping.left, topping.right)))
       }),
       popTopping: action(() => this.toppings.pop()),
       reset: action(() => {
