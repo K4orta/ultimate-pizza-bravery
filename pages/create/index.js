@@ -32,7 +32,9 @@ class OptionsView extends React.Component {
     }
 
     if (this.pizza.toppingsOnly.length < e.target.value) {
-      this.pizza.addTopping(genTopping({blacklist: this.pizza.onlyToppings}))
+      this.pizza.addTopping(
+        genTopping({blacklist: this.pizza.toppings})
+      )
     }
   }
   onGen() {
